@@ -56,10 +56,10 @@
 						<input type="button" value="수정" onclick="location.href='updForm.do?idx=${p.idx}'">
 					</td>
 					<td>
-						<img src="images/${p.p_image_s}" width="100" height="90">
+						<img srcProductInsertAct.java="images/${p.p_image_s}" width="100" height="90">
 					</td>
 					<td>
-						<a href="view.do?idx=">${p.p_name}</a>
+						<a href="view.do?idx=${ p.idx }">${p.p_name}</a>
 					</td>
 					<td>
 						<fmt:formatNumber value="${p.p_saleprice}"/>원<br>
