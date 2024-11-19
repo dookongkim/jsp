@@ -66,6 +66,27 @@ public class ProductDAO {
 		return cnt;
 		
 	}
+	//상세보기를 위한 상세조회
+	public ProductVO selectOne( int idx ) {
+		SqlSession sqlSession=factory.openSession();
+		ProductVO vo=sqlSession.selectOne("p.product_one",idx);
+		sqlSession.close();
+		
+		return vo;
+		
+	}
+	
+	public int delete( int idx ) {
+		SqlSession sqlSession=factory.openSession();
+		int res=sqlSession.delete("p.product_del", idx);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+		
+	}
+	
+	
 	
 	
 	

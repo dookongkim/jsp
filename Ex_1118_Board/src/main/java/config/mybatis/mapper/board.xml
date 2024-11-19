@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	
+	<select id="board_list" resultType="board">
+		select * from board order by ref desc , step asc
+	</select>
+	
+	<insert id="board_insert" parameterType="board">
+		insert into board values(
+		seq_board_idx.nextVal,#{name},#{subject},#{content},
+		#{pwd},#{ip},sysdate,0,seq_board_idx.currval,0,0,0 )
+	</insert>
+	
+	<select id="board_one" parameterType="int" resultType="board" >
+		select * from board where idx=#{idx}
+	</select>
+	
+	<update id="update_readhit" parameterType="int">
+		update board set readhit=readhit+1 where idx=#{idx}
+	</update>
+	
+	<update id="update_step" parameterType="board">
+		update board set step=step+1 where step>#{step} and ref=#{ref}
+	</update>
+	
+	<insert id="board_reply_insert" parameterType="board">
+		insert into board values(
+		seq_board_idx.nextVal,#{name},#{subject},#{content},
+		#{pwd},#{ip},sysdate,0,#{ref},#{step},#{depth},0 )
+	</insert>
+	
+	<update id="del_update" parameterType="int">
+		update board set del_info=-1 where idx=#{idx}
+	</update>
+	
+	<update id="board_update" parameterType="board">
+		update board set subject=#{subject} , content=#{content}, regdate=sysdate where idx=#{idx}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
