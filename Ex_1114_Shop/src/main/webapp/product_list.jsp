@@ -58,7 +58,7 @@
 						<input type="button" value="삭제" onclick="location.href='productDel.do?idx=${p.idx}&category=${param.category}'">
 					</td>
 					<td>
-						<img src="images/${p.p_image_s}" width="100" height="90">
+						<img srcProductInsertAct.java="images/${p.p_image_s}" width="100" height="90">
 					</td>
 					<td>
 						<a href="view.do?idx=${ p.idx }">${p.p_name}</a>
