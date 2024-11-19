@@ -76,7 +76,7 @@ public class ProductDAO {
 		
 	}
 	
-<<<<<<< HEAD
+
 	public int delete( int idx ) {
 		SqlSession sqlSession=factory.openSession();
 		int res=sqlSession.delete("p.product_del", idx);
@@ -86,11 +86,7 @@ public class ProductDAO {
 		return res;
 		
 	}
-	
-	
-=======
->>>>>>> refs/remotes/origin/master
-	
+
 	
 	
 }

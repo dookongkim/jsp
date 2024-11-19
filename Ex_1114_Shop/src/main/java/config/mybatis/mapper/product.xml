@@ -32,15 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where idx=#{idx}
 </update>
 
-<<<<<<< HEAD
 	<select id="product_one" resultType="pro" parameterType="int">
 		select * from product where idx=#{idx}
 	</select>
-=======
+
 <select id="product_one" resultType="pro" parameterType="int">
 	select * from product where idx=#{idx}
 </select>
->>>>>>> refs/remotes/origin/master
 
 	<delete id="product_del" parameterType="int">
 		delete from product where idx=#{idx}
