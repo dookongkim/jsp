@@ -27,7 +27,7 @@
 					alert("비밀번호를 입력하세요");
 					return;
 				}
-				
+			
 				f.method="post";
 				f.action="reply.do";
 				f.submit();
@@ -39,6 +39,10 @@
 	<body>
 		<form name="f">
 			<input type="hidden" name="idx" value="${param.idx }">
+			<input type="hidden" name="page" value="${param.page }">
+			<input type="hidden" name="search" value="${param.search }">
+			<input type="hidden" name="search_text" value="${param.search_text }">
+			
 			<table width="700">
 			<caption>댓글 작성하기</caption>
 				<tr>

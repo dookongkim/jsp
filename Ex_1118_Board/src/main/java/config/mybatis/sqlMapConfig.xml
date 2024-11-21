@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<typeAliases>
 		 <typeAlias type="vo.BoardVO" alias="board"/> 
+		 <typeAlias type="vo.CommentVO" alias="comm"/> 
 	</typeAliases>
 	
 	<environments default="">
@@ -19,5 +20,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="config/mybatis/mapper/board.xml" />
+		<mapper resource="config/mybatis/mapper/comment.xml" />
 	</mappers>
 </configuration>

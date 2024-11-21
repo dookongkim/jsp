@@ -12,12 +12,51 @@
 			  color:black;}
 			
 		</style>	
+		
+		<script>
+			window.onload = function(){
+				
+				let search = document.getElementById("search");
+				let search_text=document.getElementById("search_text");
+				
+				let search_array=["all",'subject','name','content','name_subject_content'];
+				
+				for(let i=0;i<search_array.length;i++){
+					
+					if('${param.search}' == search_array[i]){
+						search[i].selected=true;
+						search_text.value='${param.search_text}';
+						break;
+					}	
+					
+				}	
+					
+			}
+		
+			function search(){
+				//검색 카테고리
+				let search=document.getElementById("search").value;
+				
+				//검색어 
+				let search_text=document.getElementById("search_text").value;
+				
+				if(search !='all'&&search_text == ''){
+					alert("검색어를 입력하세요");
+					return;
+				}
+				
+				location.href="list.do?search="+search+
+						      "&search_text="+encodeURIComponent(search_text)+
+						      "&page=1";
+				
+			}
+		</script>
 		</head>
 	
 	<body>
 		<table width="700" align="center">
 			<tr>
-				<td><img src="img/title_04.gif"></td>
+				<td><img src="img/title_04.gif" onclick="location.href='list.do'"></td>
 			</tr>
 			
 			<tr>
@@ -52,7 +91,7 @@
 						<c:if test="${vo.depth ne 0 }">ㄴ</c:if>
 						
 						<c:if test="${vo.del_info ne -1 }">
-							<a href="view.do?idx=${vo.idx}">${ vo.subject }</a>
+							<a href="view.do?idx=${vo.idx}&page=${empty param.page ? 1 : param.page}&search=${param.search }&search_text=${param.search_text }">${ vo.subject }</a>
 						</c:if>
 						
 						<c:if test="${vo.del_info eq -1 }">
@@ -80,9 +119,21 @@
 			
 				<tr>
 					<td colspan="9" align="center">
-						<img src="img/btn_prev.gif">
-						1 2 3 4 5
-						<img src="img/btn_next.gif">
+						${ pageMenu }	
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="9" align="center">
+						<select id="search">
+							<option value="all">:::전체보기:::</option>
+							<option value="subject">제목</option>
+							<option value="name">이름</option>
+							<option value="content">내용</option>
+							<option value="name_subject_content">이름+제목+내용</option>
+						</select>
+						<input id="search_text">
+						<input type="button" value="검색" onclick="search();">
 					</td>
 				</tr>
 				

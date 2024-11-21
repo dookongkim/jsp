@@ -21,9 +21,15 @@ public class BoardViewAct extends HttpServlet {
 
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//&search=${param.search }&search_text=${param.search_text }
+		
+		String search=request.getParameter("search");
+		String search_text=request.getParameter("search_text");
+		
+		int page=Integer.parseInt(request.getParameter("page"));
 		
 		int idx=Integer.parseInt(request.getParameter("idx"));
-		
+	
 		BoardVO vo=BoardDAO.getInstance().selectOne(idx);
 		
 		//조회수 증가
@@ -34,13 +40,15 @@ public class BoardViewAct extends HttpServlet {
 			int res=BoardDAO.getInstance().update_readhit(idx);
 			session.setAttribute("show", "y");
 		}
+		
 		BoardVO vo1=BoardDAO.getInstance().selectOne(idx);
 		request.setAttribute("vo", vo1);
 		
 		RequestDispatcher disp=request.getRequestDispatcher("board_view.jsp");
+		
 		disp.forward(request, response);
 		
-		
+	
 	}
 
 }

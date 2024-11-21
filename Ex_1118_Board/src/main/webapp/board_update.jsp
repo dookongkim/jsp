@@ -29,7 +29,7 @@
 			}
 			
 			f.method="POST";
-			f.action="update.do";
+			f.action="update.do?idx=${vo.idx}&page=${param.page}&search=${param.search}&search_text=${param.search_text}";
 			f.submit();
 			
 		}

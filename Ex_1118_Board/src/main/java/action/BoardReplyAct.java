@@ -1,6 +1,8 @@
 package action;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,10 @@ public class BoardReplyAct extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+		String page=request.getParameter("page");
+		String search=request.getParameter("search");
+		String search_text=request.getParameter("search_text");
 		
 		int idx=Integer.parseInt(request.getParameter("idx"));
 		String subject=request.getParameter("subject");
@@ -36,14 +42,18 @@ public class BoardReplyAct extends HttpServlet {
 		vo.setSubject(subject);
 		vo.setContent(content);
 		vo.setPwd(pwd);
-		vo.setIp(ip);
+		vo.setIp(ip); 
 		
 		vo.setRef(baseVO.getRef());
 		vo.setStep(baseVO.getStep()+1);
 		vo.setDepth(baseVO.getDepth()+1);
 	
+		
 		res=dao.reply(vo);
-		response.sendRedirect("list.do");
+		
+		String encode_search_text=URLEncoder.encode(search_text,"UTF8");
+		response.sendRedirect("list.do?page="+page+"&search="+search+"&search_text="+encode_search_text);
+		
 		
 		
 	}

@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -27,10 +28,10 @@ public class BoardDAO {
 		factory=MyBatisConnector.getInstance().getFactory();
 	}
 	
-	public List<BoardVO> selectList(){
+	public List<BoardVO> selectList(Map<String, Object> map){
 		
 		SqlSession sqlSession=factory.openSession();
-		List<BoardVO> list=sqlSession.selectList("b.board_list");
+		List<BoardVO> list=sqlSession.selectList("b.board_list", map);
 		
 		sqlSession.close();
 		
@@ -116,6 +117,17 @@ public class BoardDAO {
 		
 		return res;
 		
+	}
+	//게시판 전체 게시글 수
+	public int getRowTotal( Map<String, Object> map) {
+		SqlSession sqlSession=factory.openSession();
+		int count= sqlSession.selectOne("b.board_count",map);
+		
+		//System.out.println("count : "+ count);
+		
+		sqlSession.close();
+		
+		return count;
 	}
 	
 	
